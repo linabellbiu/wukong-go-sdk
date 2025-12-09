@@ -40,7 +40,7 @@ func (s *ManagerService) Login(ctx context.Context, req *ManagerLoginRequest) (*
 	var respBody ManagerLoginResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/manager/login", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("manager.Login", err)
 	}
 	return &respBody, nil
 }

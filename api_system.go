@@ -22,7 +22,7 @@ func (s *SystemService) Health(ctx context.Context) (*HealthStatus, error) {
 	var respBody HealthStatus
 	_, err := s.client.do(ctx, http.MethodGet, "/health", nil, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("system.Health", err)
 	}
 	return &respBody, nil
 }

@@ -39,7 +39,7 @@ func (s *RouteService) GetIMAddress(ctx context.Context, req *RouteAddressReques
 	var respBody RouteAddress
 	_, err := s.client.do(ctx, http.MethodGet, path, nil, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("route.GetIMAddress", err)
 	}
 	return &respBody, nil
 }
@@ -75,7 +75,7 @@ func (s *RouteService) BatchGetIMAddress(ctx context.Context, req *BatchRouteAdd
 	var respBody []BatchRouteAddress
 	_, err := s.client.do(ctx, http.MethodPost, path, req.UIDs, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("route.BatchGetIMAddress", err)
 	}
 	return respBody, nil
 }

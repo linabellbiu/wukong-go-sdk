@@ -1,5 +1,7 @@
 package wukong_go_sdk
 
+import pkgerrors "github.com/pkg/errors"
+
 // APIError 表示 WuKongIM REST 接口的标准错误响应
 // 参考文档示例：{"msg": "channel_id 参数不能为空", "status": 400}
 type APIError struct {
@@ -15,4 +17,12 @@ func (e *APIError) Error() string {
 		return e.Msg
 	}
 	return "wukongim api error"
+}
+
+// wrapError 统一包装底层错误，带上模块关键字和操作名
+func wrapError(op string, err error) error {
+	if err == nil {
+		return nil
+	}
+	return pkgerrors.Wrap(err, "wukongimsdk err: "+op)
 }

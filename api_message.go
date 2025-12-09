@@ -46,7 +46,7 @@ func (s *MessageService) SendMessage(ctx context.Context, req *SendMessageReques
 	var respBody SendMessageResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/message/send", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("message.SendMessage", err)
 	}
 	return &respBody, nil
 }
@@ -73,7 +73,7 @@ func (s *MessageService) BatchSendMessage(ctx context.Context, req *BatchSendMes
 	var respBody []BatchSendMessageResponseItem
 	_, err := s.client.do(ctx, http.MethodPost, "/message/sendbatch", req.Messages, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("message.BatchSendMessage", err)
 	}
 	return respBody, nil
 }
@@ -111,7 +111,7 @@ func (s *MessageService) MessageSync(ctx context.Context, req *MessageSyncReques
 	var respBody []Message
 	_, err := s.client.do(ctx, http.MethodPost, "/channel/messagesync", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("message.MessageSync", err)
 	}
 	return respBody, nil
 }
@@ -137,7 +137,7 @@ func (s *MessageService) GetMaxMessageSeq(ctx context.Context, req *MaxMessageSe
 	var respBody MaxMessageSeqResponse
 	_, err := s.client.do(ctx, http.MethodGet, "/channel/max_message_seq", nil, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("message.GetMaxMessageSeq", err)
 	}
 	return &respBody, nil
 }
@@ -185,7 +185,7 @@ func (s *MessageService) UserSearch(ctx context.Context, req *UserSearchRequest)
 	var respBody UserSearchResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/plugins/wk.plugin.search/usersearch", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("message.UserSearch", err)
 	}
 	return &respBody, nil
 }
@@ -205,7 +205,7 @@ func (s *MessageService) BatchSearch(ctx context.Context, req *BatchSearchReques
 	var respBody []Message
 	_, err := s.client.do(ctx, http.MethodPost, "/messages", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("message.BatchSearch", err)
 	}
 	return respBody, nil
 }
@@ -225,7 +225,7 @@ func (s *MessageService) SingleSearch(ctx context.Context, req *SingleSearchRequ
 	var respBody Message
 	_, err := s.client.do(ctx, http.MethodPost, "/message", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("message.SingleSearch", err)
 	}
 	return &respBody, nil
 }

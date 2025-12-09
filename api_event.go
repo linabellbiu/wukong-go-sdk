@@ -44,7 +44,7 @@ func (s *EventService) Send(ctx context.Context, req *EventSendRequest) (*Create
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, path, req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("event.Send", err)
 	}
 	return &respBody, nil
 }

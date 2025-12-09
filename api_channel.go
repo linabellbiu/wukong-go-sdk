@@ -35,7 +35,7 @@ func (s *ChannelService) Create(ctx context.Context, req *CreateChannelRequest) 
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/channel", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("channel.Create", err)
 	}
 	return &respBody, nil
 }
@@ -58,7 +58,7 @@ func (s *ChannelService) UpdateInfo(ctx context.Context, req *UpdateInfoRequest)
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/channel/info", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("channel.UpdateInfo", err)
 	}
 	return &respBody, nil
 }
@@ -82,7 +82,7 @@ func (s *ChannelService) AddSubscribers(ctx context.Context, req *AddSubscribers
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/channel/subscriber_add", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("channel.AddSubscribers", err)
 	}
 	return &respBody, nil
 }
@@ -105,7 +105,7 @@ func (s *ChannelService) RemoveSubscribers(ctx context.Context, req *RemoveSubsc
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/channel/subscriber_remove", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("channel.RemoveSubscribers", err)
 	}
 	return &respBody, nil
 }
@@ -126,7 +126,7 @@ func (s *ChannelService) Delete(ctx context.Context, req *DeleteChannelRequest) 
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/channel/delete", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("channel.Delete", err)
 	}
 	return &respBody, nil
 }
@@ -148,7 +148,7 @@ func (s *ChannelService) AddBlacklist(ctx context.Context, req *ChannelUIDsReque
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/channel/blacklist_add", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("channel.AddBlacklist", err)
 	}
 	return &respBody, nil
 }
@@ -163,7 +163,7 @@ func (s *ChannelService) SetBlacklist(ctx context.Context, req *ChannelUIDsReque
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/channel/blacklist_set", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("channel.SetBlacklist", err)
 	}
 	return &respBody, nil
 }
@@ -185,7 +185,7 @@ func (s *ChannelService) RemoveBlacklist(ctx context.Context, req *RemoveBlackli
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/channel/blacklist_remove", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("channel.RemoveBlacklist", err)
 	}
 	return &respBody, nil
 }
@@ -200,7 +200,7 @@ func (s *ChannelService) AddWhitelist(ctx context.Context, req *ChannelUIDsReque
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/channel/whitelist_add", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("channel.AddWhitelist", err)
 	}
 	return &respBody, nil
 }
@@ -215,7 +215,7 @@ func (s *ChannelService) SetWhitelist(ctx context.Context, req *ChannelUIDsReque
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/channel/whitelist_set", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("channel.SetWhitelist", err)
 	}
 	return &respBody, nil
 }
@@ -237,7 +237,7 @@ func (s *ChannelService) RemoveWhitelist(ctx context.Context, req *RemoveWhiteli
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/channel/whitelist_remove", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("channel.RemoveWhitelist", err)
 	}
 	return &respBody, nil
 }
@@ -262,7 +262,7 @@ func (s *ChannelService) GetWhitelist(ctx context.Context, req *GetWhitelistRequ
 	var respBody []string
 	_, err := s.client.do(ctx, http.MethodGet, path, nil, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("channel.GetWhitelist", err)
 	}
 	return respBody, nil
 }
@@ -284,7 +284,7 @@ func (s *ChannelService) SetTmpSubscriber(ctx context.Context, req *SetTmpSubscr
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/channel/tmp_subscriber_set", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("channel.SetTmpSubscriber", err)
 	}
 	return &respBody, nil
 }

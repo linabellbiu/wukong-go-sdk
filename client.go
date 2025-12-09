@@ -112,7 +112,7 @@ func (c *Client) do(ctx context.Context, method, path string, reqBody any, respB
 
 	resp, err := req.Execute(method, path)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("client.do", err)
 	}
 
 	if resp.IsError() {

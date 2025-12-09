@@ -27,7 +27,7 @@ func (s *ConnectionService) Remove(ctx context.Context, req *ConnectionRequest) 
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/conn/remove", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("connection.Remove", err)
 	}
 	return &respBody, nil
 }
@@ -42,7 +42,7 @@ func (s *ConnectionService) Kick(ctx context.Context, req *ConnectionRequest) (*
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/conn/kick", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("connection.Kick", err)
 	}
 	return &respBody, nil
 }

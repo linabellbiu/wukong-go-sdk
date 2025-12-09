@@ -51,7 +51,7 @@ func (s *ConversationService) Sync(ctx context.Context, req *ConversationSyncReq
 	var respBody []Conversation
 	_, err := s.client.do(ctx, http.MethodPost, "/conversation/sync", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("conversation.Sync", err)
 	}
 	return respBody, nil
 }
@@ -74,7 +74,7 @@ func (s *ConversationService) ClearUnread(ctx context.Context, req *Conversation
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/conversations/clearUnread", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("conversation.ClearUnread", err)
 	}
 	return &respBody, nil
 }
@@ -97,7 +97,7 @@ func (s *ConversationService) SetUnread(ctx context.Context, req *ConversationSe
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/conversations/setUnread", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("conversation.SetUnread", err)
 	}
 	return &respBody, nil
 }
@@ -119,7 +119,7 @@ func (s *ConversationService) Delete(ctx context.Context, req *ConversationDelet
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/conversations/delete", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("conversation.Delete", err)
 	}
 	return &respBody, nil
 }

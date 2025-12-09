@@ -28,7 +28,7 @@ func (s *UserService) UpdateToken(ctx context.Context, req *UpdateUserTokenReque
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/user/token", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("user.UpdateToken", err)
 	}
 	return &respBody, nil
 }
@@ -49,7 +49,7 @@ func (s *UserService) DeviceQuit(ctx context.Context, req *DeviceQuitRequest) (*
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/user/device_quit", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("user.DeviceQuit", err)
 	}
 	return &respBody, nil
 }
@@ -76,7 +76,7 @@ func (s *UserService) OnlineStatus(ctx context.Context, req *OnlineStatusRequest
 	var respBody []UserOnlineStatus
 	_, err := s.client.do(ctx, http.MethodPost, "/user/onlinestatus", req.UIDs, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("user.OnlineStatus", err)
 	}
 	return respBody, nil
 }
@@ -87,7 +87,7 @@ func (s *UserService) SystemUIDs(ctx context.Context) ([]string, error) {
 	var respBody []string
 	_, err := s.client.do(ctx, http.MethodGet, "/user/systemuids", nil, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("user.SystemUIDs", err)
 	}
 	return respBody, nil
 }
@@ -107,7 +107,7 @@ func (s *UserService) AddSystemUIDs(ctx context.Context, req *SystemUIDsChangeRe
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/user/systemuids_add", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("user.AddSystemUIDs", err)
 	}
 	return &respBody, nil
 }
@@ -122,7 +122,7 @@ func (s *UserService) RemoveSystemUIDs(ctx context.Context, req *SystemUIDsChang
 	var respBody CreateChannelResponse
 	_, err := s.client.do(ctx, http.MethodPost, "/user/systemuids_remove", req, &respBody)
 	if err != nil {
-		return nil, err
+		return nil, wrapError("user.RemoveSystemUIDs", err)
 	}
 	return &respBody, nil
 }
