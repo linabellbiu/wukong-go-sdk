@@ -116,7 +116,7 @@ func (c *Client) do(ctx context.Context, method, path string, reqBody any, respB
 	}
 
 	if resp.IsError() {
-		if errObj, ok := resp.Error().(*APIError); ok && (errObj.Msg != "" || errObj.Status != 0) {
+		if errObj, ok := resp.Error().(*APIError); ok && (errObj.Msg != "" || errObj.Message != "" || errObj.Status != 0) {
 			return resp, errObj
 		}
 		return resp, fmt.Errorf("unexpected status code: %d", resp.StatusCode())
