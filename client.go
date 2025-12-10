@@ -116,7 +116,8 @@ func (c *Client) do(ctx context.Context, method, path string, reqBody any, respB
 	}
 
 	if resp.IsError() {
-		if errObj, ok := resp.Error().(*APIError); ok && (errObj.Msg != "" || errObj.Message != "" || errObj.Status != 0) {
+		if errObj, ok := resp.Error().(*APIError); ok {
+			errObj.HttpCode = resp.StatusCode()
 			return resp, errObj
 		}
 		return resp, fmt.Errorf("unexpected status code: %d", resp.StatusCode())
@@ -124,3 +125,20 @@ func (c *Client) do(ctx context.Context, method, path string, reqBody any, respB
 
 	return resp, nil
 }
+
+//func HttpCodeError(code int) error {
+//	switch code {
+//	case http.StatusOK:
+//		return nil
+//	case http.StatusInternalServerError:
+//		return SetAPIError(code, "服务器内部错误")
+//	case http.StatusBadRequest:
+//		return SetAPIError(code, "请求参数错误")
+//	case http.StatusForbidden:
+//		return SetAPIError(code, "没有发送权限")
+//	}
+//}
+//
+//func SetAPIError(code int, s string) *APIError {
+//	return &APIError{HttpCode: code, Message: s}
+//}

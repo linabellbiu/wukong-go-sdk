@@ -5,9 +5,11 @@ import pkgerrors "github.com/pkg/errors"
 // APIError 表示 WuKongIM REST 接口的标准错误响应
 // 参考文档示例：{"msg": "channel_id 参数不能为空", "status": 400}
 type APIError struct {
-	Msg     string `json:"msg"`
-	Message string `json:"message"`
-	Status  int    `json:"status"`
+	Msg           string `json:"msg"`
+	Message       string `json:"message"`
+	Status        int    `json:"status"`
+	HttpCodeError string `json:"http_code_error"`
+	HttpCode      int    `json:"http_code"`
 }
 
 func (e *APIError) Error() string {
