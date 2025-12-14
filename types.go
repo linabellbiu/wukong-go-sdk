@@ -8,6 +8,22 @@ const (
 	ChannelTypePerson ChannelType = 1
 	// ChannelTypeGroup 群组频道
 	ChannelTypeGroup ChannelType = 2
+	// ChannelTypeCustomerService 客服频道
+	ChannelTypeCustomerService ChannelType = 3
+	// ChannelTypeCommunity 社区频道
+	ChannelTypeCommunity ChannelType = 4
+	// ChannelTypeCommunityTopic 社区话题频道
+	ChannelTypeCommunityTopic ChannelType = 5
+	// ChannelTypeNews 资讯频道
+	ChannelTypeNews ChannelType = 6
+	// ChannelTypeLivestream 直播频道
+	ChannelTypeLivestream ChannelType = 9
+	// ChannelTypeVisitor 访客频道
+	ChannelTypeVisitor ChannelType = 10
+	// ChannelTypeSingleAgent 单聊 Agent 频道
+	ChannelTypeSingleAgent ChannelType = 11
+	// ChannelTypeGroupAgent 群聊 Agent 频道
+	ChannelTypeGroupAgent ChannelType = 12
 )
 
 // IntranetType 表示路由地址类型
