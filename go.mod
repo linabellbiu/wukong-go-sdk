@@ -1,4 +1,4 @@
-module github.com/intelli-train-ai/wukong-go-sdk
+module github.com/linabellbiu/wukong-go-sdk
 
 go 1.23.0
 
